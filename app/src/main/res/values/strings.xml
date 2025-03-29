@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Mercado Pago Payment App</string>
+    <string name="transaction_value_hint">Valor da transação</string>
+    <string name="transaction_description_hint">Descrição da transação</string>
+    <string name="pay_button">Pagar</string>
+    <string name="payment_url">URL do pagamento: %1$s</string>
+    <string name="error_payment">Erro ao criar a preferência: %1$s</string>
+    <string name="invalid_value">Valor inválido. Verifique o valor informado.</string>
+    <string name="fill_all_fields">Por favor, preencha todos os campos.</string>
+</resources>
