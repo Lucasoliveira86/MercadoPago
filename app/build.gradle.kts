@@ -1,3 +1,5 @@
+import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -46,13 +48,23 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "mozilla/public-suffix-list.txt"
+            excludes += "licenses/thoughtworks.TXT"
+            pickFirsts += "META-INF/DEPENDENCIES"
+            pickFirsts += "META-INF/sisu/javax.inject.Named"
+            pickFirsts += "META-INF/plexus/components.xml"
+            pickFirsts += "licenses/javolution.license.TXT"
+            pickFirsts += "licenses/extreme.indiana.edu.license.TXT"
         }
     }
 }
 
+configurations.all {
+    exclude(group = "com.google.guava", module = "listenablefuture")
+    exclude(group = "org.codehaus.plexus", module = "plexus-container-default")
+}
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,6 +74,11 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.constraintlayout)
+    implementation(libs.sdk.java) {
+        exclude(group = "com.google.collections", module = "google-collections")
+    }
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -69,6 +86,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
-    implementation("com.mercadopago:sdk-java:2.1.29")
-}
 
+}

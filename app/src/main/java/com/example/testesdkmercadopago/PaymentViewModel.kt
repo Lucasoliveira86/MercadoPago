@@ -33,7 +33,7 @@ class PaymentViewModel : ViewModel() {
                         val client = PaymentClient()
                         val createRequest = PaymentCreateRequest.builder()
                             .transactionAmount(amount)
-                            .token("your_cardtoken") // Valor fixo para simulação
+                            .token("your_cardtoken")
                             .description(description)
                             .installments(1)
                             .paymentMethodId("visa")

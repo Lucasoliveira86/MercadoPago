@@ -20,6 +20,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this).get(PaymentViewModel::class.java)
 
+        Utils.applyCurrencyMask(binding.edtValue)
+
         viewModel.paymentResult.observe(this) { result ->
             result.fold(
                 onSuccess = { url ->
@@ -33,8 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         binding.btnPagar.setOnClickListener {
             val value = binding.edtValue.text.toString()
+            val cleanValue = Utils.removeCurrencyMask(value)
             val description = binding.edtDescription.text.toString()
-            viewModel.pay(value, description)
+            viewModel.pay(cleanValue, description)
         }
     }
 
